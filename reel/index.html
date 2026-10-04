@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mal Mariass Showreel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: dark screening room — intro, three vertical "screens" side by side, notes under each, CTA */
+:root{
+  color-scheme:dark;
+  --bg:#0f0d12; --panel:#18151d; --ink:#f3eee6; --muted:#a79fae;
+  --flame:#ff6b3d; --lilac:#b79cff; --line:rgba(243,238,230,.12);
+  --display:"Fraunces",Georgia,serif; --body:"Inter",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:hidden}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased;padding-inline:20px}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(60% 40% at 20% 0%,rgba(255,107,61,.16),transparent 70%),radial-gradient(50% 40% at 90% 10%,rgba(183,156,255,.14),transparent 70%);z-index:0}
+.wrap{max-width:1160px;margin:0 auto;position:relative;z-index:1}
+h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-.02em;text-wrap:balance}
+
+header{padding-block:72px 40px;max-width:760px}
+.eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--flame);font-weight:600;display:flex;align-items:center;gap:10px}
+.eyebrow i{width:9px;height:9px;border-radius:50%;background:var(--flame);box-shadow:0 0 0 0 rgba(255,107,61,.6);animation:rec 1.6s infinite}
+@keyframes rec{70%{box-shadow:0 0 0 10px rgba(255,107,61,0)}}
+h1{font-size:clamp(40px,6.4vw,76px);line-height:1.02;margin:18px 0 20px}
+h1 em{font-style:italic;font-weight:400;color:var(--lilac)}
+.lead{color:var(--muted);font-size:clamp(16px,1.7vw,19px);max-width:60ch}
+.credits{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.credits span{font-size:13px;border:1px solid var(--line);border-radius:999px;padding:6px 14px;color:var(--ink)}
+.credits b{color:var(--flame);font-weight:600}
+.hint{margin-top:22px;font-size:14px;color:var(--muted)}
+.hint b{color:var(--ink)}
+
+.reel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;padding-block:20px 60px}
+.clip{display:flex;flex-direction:column;gap:16px;min-width:0}
+.screen{position:relative;aspect-ratio:9/16;max-width:100%;border-radius:22px;overflow:hidden;background:#000;box-shadow:0 30px 60px -30px rgba(0,0,0,.9),0 0 0 1px var(--line);cursor:pointer}
+.screen video{width:100%;height:100%;object-fit:cover;display:block}
+.screen .play{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(transparent 55%,rgba(0,0,0,.55));transition:opacity .3s;border:0;color:inherit;cursor:pointer;width:100%}
+.screen .play span{width:72px;height:72px;border-radius:50%;background:rgba(243,238,230,.92);color:var(--bg);display:grid;place-items:center;font-size:24px;padding-left:5px;box-shadow:0 12px 30px rgba(0,0,0,.5);transition:transform .25s}
+.screen:hover .play span{transform:scale(1.08)}
+.screen.playing .play{opacity:0;pointer-events:none}
+.badge{position:absolute;top:14px;left:14px;display:flex;flex-wrap:wrap;gap:6px;z-index:2;pointer-events:none}
+.badge em{font-style:normal;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border-radius:7px;background:rgba(15,13,18,.75);backdrop-filter:blur(6px)}
+.badge em.c{color:var(--lilac)}.badge em.l{color:var(--flame)}
+.bar{position:absolute;left:0;bottom:0;height:3px;background:var(--flame);width:0;z-index:2}
+.sound{position:absolute;right:12px;bottom:14px;z-index:3;border:0;background:rgba(15,13,18,.75);color:var(--ink);font:600 12px var(--body);padding:7px 11px;border-radius:999px;cursor:pointer;opacity:0;transition:opacity .3s}
+.screen.playing .sound{opacity:1}
+.num{font-family:var(--display);font-style:italic;color:var(--muted);font-size:15px}
+.clip h3{font-size:24px;line-height:1.15}
+.clip p{color:var(--muted);font-size:15px}
+.watch{list-style:none;display:flex;flex-direction:column;gap:7px;border-top:1px solid var(--line);padding-top:12px}
+.watch li{font-size:14px;padding-left:20px;position:relative}
+.watch li::before{content:"→";position:absolute;left:0;color:var(--flame)}
+
+.role{border:1px solid var(--line);background:var(--panel);border-radius:24px;padding:36px clamp(20px,4vw,48px);display:grid;grid-template-columns:1fr 1.4fr;gap:32px;align-items:center}
+.role h2{font-size:clamp(26px,3.4vw,38px);line-height:1.1}
+.role ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.role li{font-size:15px;color:var(--muted)}
+.role li b{display:block;color:var(--ink);font-weight:600}
+
+footer{text-align:center;padding-block:90px 70px}
+footer h2{font-size:clamp(30px,4.6vw,52px);max-width:18ch;margin:0 auto 14px;line-height:1.08}
+footer p{color:var(--muted);margin-bottom:30px}
+.btn{display:inline-flex;gap:10px;align-items:center;background:var(--ink);color:var(--bg);text-decoration:none;font-weight:600;font-size:17px;padding:16px 30px;border-radius:999px;transition:transform .25s,background .25s}
+.btn:hover{transform:translateY(-3px);background:var(--flame)}
+.btn:focus-visible,.screen:focus-visible,.sound:focus-visible{outline:3px solid var(--lilac);outline-offset:3px}
+.sign{margin-top:26px;font-size:14px;color:var(--muted)}
+.sign b{color:var(--ink)}
+
+@media (max-width:900px){
+  .reel{grid-template-columns:1fr;max-width:420px;margin:0 auto;gap:56px}
+  .role{grid-template-columns:1fr}
+  header{padding-block:48px 28px}
+}
+@media (max-width:480px){.role ul{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow"><i></i> AI filmmaking samples</div>
+  <h1>Same faces. Every shot. <em>In sync.</em></h1>
+  <p class="lead">Three short pieces from <b>3Manitos</b>, my original animated series with Kai, Luna and Zoe. They show how I keep characters consistent across shots, angles and scenes, and how I direct performance and lip-sync to the voice track.</p>
+  <div class="credits">
+    <span><b>Script</b> by me</span><span><b>Character sheets</b> by me</span><span><b>Timing &amp; edit</b> by me</span><span><b>Music &amp; voice casting</b> by me</span>
+  </div>
+  <p class="hint">Tap any screen to play <b>with sound</b>. Only one plays at a time.</p>
+</header>
+
+<section class="reel">
+  <article class="clip">
+    <div class="screen" tabindex="0" aria-label="Play clip 1 with sound">
+      <video playsinline webkit-playsinline preload="metadata" controlslist="nodownload" poster="videos/clip-a.jpg">
+        <source src="videos/clip-a.mp4" type="video/mp4"><source src="videos/clip-a.webm" type="video/webm">
+      </video>
+      <div class="badge"><em class="l">Lip-sync</em><em class="c">Consistency</em></div>
+      <div class="play" aria-hidden="true"><span>▶</span></div>
+      <button class="sound" type="button">🔊 Sound on</button>
+      <div class="bar"></div>
+    </div>
+    <div class="num">01 · 25 sec</div>
+    <h3>Backyard, close-up to wide</h3>
+    <p>Opens tight on one character talking straight to camera, then pulls out to the three friends dancing together under the flamboyán tree.</p>
+    <ul class="watch">
+      <li>Mouth shapes matched to the voice in the close-up</li>
+      <li>Hair beads, outfits and faces hold from close-up to wide shot</li>
+      <li>Three characters moving in the same frame without drifting</li>
+    </ul>
+  </article>
+
+  <article class="clip">
+    <div class="screen" tabindex="0" aria-label="Play clip 2 with sound">
+      <video playsinline webkit-playsinline preload="metadata" controlslist="nodownload" poster="videos/clip-b.jpg">
+        <source src="videos/clip-b.mp4" type="video/mp4"><source src="videos/clip-b.webm" type="video/webm">
+      </video>
+      <div class="badge"><em class="c">Multi-shot scene</em><em class="l">Expression</em></div>
+      <div class="play" aria-hidden="true"><span>▶</span></div>
+      <button class="sound" type="button">🔊 Sound on</button>
+      <div class="bar"></div>
+    </div>
+    <div class="num">02 · 20 sec</div>
+    <h3>The kitchen scene</h3>
+    <p>A full mini-story in one location: sleepy faces, a plan, a smoothie. Cut across wide, back, insert and close-up shots like a real scene.</p>
+    <ul class="watch">
+      <li>Small emotions: a yawn, a pout, a proud smile</li>
+      <li>Same kitchen, props and characters across every cut</li>
+      <li>Shot sequencing that tells the story without explaining it</li>
+    </ul>
+  </article>
+
+  <article class="clip">
+    <div class="screen" tabindex="0" aria-label="Play clip 3 with sound">
+      <video playsinline webkit-playsinline preload="metadata" controlslist="nodownload" poster="videos/clip-c.jpg">
+        <source src="videos/clip-c.mp4" type="video/mp4"><source src="videos/clip-c.webm" type="video/webm">
+      </video>
+      <div class="badge"><em class="c">3 angles at once</em></div>
+      <div class="play" aria-hidden="true"><span>▶</span></div>
+      <button class="sound" type="button">🔊 Sound on</button>
+      <div class="bar"></div>
+    </div>
+    <div class="num">03 · 20 sec</div>
+    <h3>One performance, three framings</h3>
+    <p>The same dance seen from three framings at the same time. It's the strictest consistency test there is, because any change in the character shows instantly.</p>
+    <ul class="watch">
+      <li>Identical face, hair and costume in wide and close framing</li>
+      <li>Movement stays in sync across all three views</li>
+      <li>Expression carries through to the final beat</li>
+    </ul>
+  </article>
+</section>
+
+<section class="role">
+  <h2>What these show about how I'd work on your episodes</h2>
+  <ul>
+    <li><b>Character bible first</b>Every character starts with a reference sheet, so identity holds for a whole episode.</li>
+    <li><b>Voice drives the shot</b>I build performance and lip-sync around the dialogue track, not the other way around.</li>
+    <li><b>Scenes, not clips</b>I plan coverage like a director: wides, inserts and close-ups that cut together.</li>
+    <li><b>Story over effects</b>A screenwriter's eye for pacing, silence and the small moment that lands.</li>
+  </ul>
+</section>
+
+<footer>
+  <h2>Ready to bring your characters to the screen.</h2>
+  <p>More of my work, and the rest of my universe:</p>
+  <a class="btn" href="https://www.malmariass.com" target="_blank" rel="noopener">🪐 Visit malmariass.com</a>
+  <div class="sign"><b>Mal Mariass</b> · Screenwriter &amp; AI Filmmaker<br>mal@malmariass.com</div>
+</footer>
+
+</div>
+<script>
+(()=>{
+  const screens=[...document.querySelectorAll('.screen')];
+  const vids=screens.map(s=>s.querySelector('video'));
+
+  /* fallback: if the browser can't use the embedded sources, retry as Blob URLs */
+  function stopOthers(cur){vids.forEach((v,k)=>{if(v!==cur&&!v.paused){v.pause()}})}
+  screens.forEach((s,k)=>{
+    const v=vids[k], bar=s.querySelector('.bar'), snd=s.querySelector('.sound');
+    const toggle=()=>{ if(v.paused){stopOthers(v); v.muted=false; snd.textContent='🔊 Sound on'; v.play().catch(()=>{v.muted=true;snd.textContent='🔇 Sound off';v.play().catch(()=>{})})} else v.pause() };
+    s.addEventListener('click',e=>{if(e.target===snd)return;toggle()});
+    s.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}});
+    snd.addEventListener('click',e=>{e.stopPropagation();v.muted=!v.muted;snd.textContent=v.muted?'🔇 Sound off':'🔊 Sound on'});
+    v.addEventListener('play',()=>s.classList.add('playing'));
+    v.addEventListener('pause',()=>s.classList.remove('playing'));
+    v.addEventListener('ended',()=>{s.classList.remove('playing');bar.style.width='0'});
+    v.addEventListener('timeupdate',()=>{if(v.duration)bar.style.width=(v.currentTime/v.duration*100)+'%'});
+  });
+  /* pause when scrolled away */
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)e.target.pause()}),{threshold:.25});
+  vids.forEach(v=>io.observe(v));
+})();
+</script>
+</body>
+</html>
